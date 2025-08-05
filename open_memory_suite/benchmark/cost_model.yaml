@@ -1,0 +1,156 @@
+# Open Memory Suite - Cost Model Configuration
+# All costs in USD cents (0.0001 = $0.0001)
+# Updated: August 1, 2025
+
+# Storage Operations - Cost to store a single memory item
+storage:
+  # In-Memory Adapter (free, ephemeral)
+  memory_store:
+    store_item: 0.0000          # Free - just memory allocation
+    maintain_index: 0.0000      # Free - TF-IDF computation is local
+    
+  # FAISS Vector Store (local compute)
+  faiss_store:
+    embedding_generation: 0.0001 # Local SentenceTransformer inference
+    vector_store: 0.0000        # Free - local FAISS index
+    index_maintenance: 0.0001   # Periodic index optimization
+    persistence_save: 0.0001    # File I/O cost
+    
+  # File Store (cheapest persistence)
+  file_store:
+    file_write: 0.00001         # Ultra-cheap file append
+    directory_scan: 0.00001     # Cost scales with file count
+    json_serialization: 0.00001 # CPU cost for JSON encoding
+    
+  # Zep Graph Store (enterprise-grade, API-based)
+  zep_store:
+    entity_extraction: 0.05     # Complex NLP processing
+    graph_write: 0.02           # Neo4j database operation
+    relationship_inference: 0.03 # Graph analysis
+    api_call_overhead: 0.01     # Network + auth costs
+
+# Retrieval Operations - Cost to query and retrieve memories
+retrieval:
+  # In-Memory Adapter
+  memory_store:
+    tfidf_search: 0.0000        # Free - local computation
+    similarity_ranking: 0.0000  # Free - cosine similarity
+    
+  # FAISS Vector Store  
+  faiss_store:
+    query_embedding: 0.0001     # SentenceTransformer inference
+    vector_search: 0.0001       # FAISS similarity search
+    result_ranking: 0.0000      # Free - already ranked by FAISS
+    
+  # File Store
+  file_store:
+    linear_scan: 0.0001         # Cost scales with storage size
+    keyword_matching: 0.00001   # Simple string operations
+    file_io: 0.00001           # Reading file contents
+    
+  # Zep Graph Store
+  zep_store:
+    semantic_query: 0.03        # Complex graph traversal
+    context_assembly: 0.02      # Building response context
+    api_call_overhead: 0.01     # Network costs
+
+# Content Processing - Advanced operations
+processing:
+  # Summarization costs
+  summarization:
+    gpt_35_turbo: 0.002         # OpenAI API call (~1000 tokens)
+    gpt_4o_mini: 0.001          # Cheaper but still high quality
+    local_llama_7b: 0.0001      # Local inference (amortized GPU cost)
+    local_llama_3b: 0.00005     # Smaller, faster model
+    
+  # Content analysis 
+  analysis:
+    importance_scoring: 0.00001  # Local ML inference
+    entity_detection: 0.0001    # NER model inference
+    keyword_extraction: 0.00001 # Simple text processing
+    sentiment_analysis: 0.00001 # Local model
+    
+  # Memory management
+  maintenance:
+    memory_compression: 0.0005  # LLM-powered compression
+    duplicate_detection: 0.0001 # Similarity comparison
+    archival_migration: 0.00005 # Moving old memories to cheaper storage
+    index_rebuilding: 0.001     # Periodic optimization
+
+# Adapter-specific multipliers (for scaling costs)
+multipliers:
+  # Scale factors based on content size
+  content_size:
+    small: 1.0      # <100 tokens
+    medium: 1.5     # 100-500 tokens  
+    large: 2.0      # 500-1000 tokens
+    xlarge: 3.0     # >1000 tokens
+    
+  # Scale factors based on memory pressure
+  memory_pressure:
+    low: 1.0        # <1000 items stored
+    medium: 1.2     # 1000-10000 items
+    high: 1.5       # 10000-100000 items
+    critical: 2.0   # >100000 items
+    
+  # Scale factors for concurrent operations
+  concurrency:
+    single: 1.0     # Single user
+    light: 1.1      # <10 concurrent users
+    moderate: 1.3   # 10-100 concurrent users  
+    heavy: 1.8      # >100 concurrent users
+
+# Latency targets (milliseconds) - for SLA compliance
+latency_targets:
+  storage:
+    memory_store: 1      # Sub-millisecond
+    faiss_store: 10      # Local embedding + store
+    file_store: 50       # File I/O latency
+    zep_store: 200       # Network + processing
+    
+  retrieval:
+    memory_store: 1      # Instant TF-IDF
+    faiss_store: 5       # Vector search is fast
+    file_store: 100      # Linear scan penalty
+    zep_store: 150       # Graph query complexity
+    
+  processing:
+    summarization: 2000  # LLM inference time
+    analysis: 50         # Local ML models
+    maintenance: 1000    # Background operations
+
+# Budget constraints (cents) - for dispatcher decision making
+budgets:
+  # Per-conversation cost limits
+  conversation:
+    minimal: 1.0         # Ultra-frugal mode
+    standard: 5.0        # Balanced mode
+    premium: 20.0        # High-quality mode
+    unlimited: 1000.0    # Research/development mode
+    
+  # Per-operation limits
+  operation:
+    storage_max: 0.1     # Never spend more than 10 cents to store one item
+    retrieval_max: 0.05  # Max 5 cents per query
+    processing_max: 0.5  # Max 50 cents for summarization
+    
+  # Daily/session limits
+  session:
+    daily_limit: 50.0    # $0.50 per day per user
+    session_limit: 10.0  # $0.10 per conversation session
+    burst_limit: 2.0     # $0.02 for sudden spikes
+
+# Quality thresholds - minimum acceptable performance
+quality_thresholds:
+  recall:
+    minimum_acceptable: 0.80    # 80% recall floor
+    target: 0.90               # 90% recall target
+    excellent: 0.95            # 95% aspirational
+    
+  latency:
+    interactive_max: 200       # 200ms for real-time chat
+    batch_max: 5000           # 5s for background processing
+    
+  cost_efficiency:
+    target_reduction: 0.40     # 40% cost reduction vs baseline
+    minimum_reduction: 0.20    # 20% minimum to be worthwhile

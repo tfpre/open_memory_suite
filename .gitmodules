@@ -1,0 +1,6 @@
+[submodule "external/epmembench"]
+	path = external/epmembench
+	url = https://github.com/ahstat/episodic-memory-benchmark
+[submodule "external/longmemeval"]
+	path = external/longmemeval
+	url = https://github.com/xiaowu0162/LongMemEval

@@ -401,14 +401,14 @@ class MLPolicy(MemoryPolicy):
     
     def _prepare_input_text(self, item: MemoryItem, context: ConversationContext) -> str:
         """
-        Prepare input text for the model including context.
+        Prepare input text for the model including context, with smart truncation.
         
         Args:
             item: Memory item
             context: Conversation context
             
         Returns:
-            Formatted input text
+            Formatted input text that fits within model's max_length
         """
         # Include speaker information
         speaker_prefix = f"[{item.speaker or 'unknown'}]: " if item.speaker else ""
@@ -426,8 +426,50 @@ class MLPolicy(MemoryPolicy):
         # Include conversation metadata
         metadata = f"Turn {context.turn_count}, Budget: {context.budget_type.value}"
         
-        # Combine all information
-        input_text = f"{recent_context}{metadata} | Current: {speaker_prefix}{item.content}"
+        # Build prefix (everything except item content)
+        prefix = f"{recent_context}{metadata} | Current: {speaker_prefix}"
+        
+        # Calculate remaining tokens available for item content
+        if self.tokenizer is not None:
+            # Reserve tokens for special tokens and padding
+            reserved_tokens = 10
+            prefix_tokens = len(self.tokenizer.encode(prefix, add_special_tokens=False))
+            available_tokens = max(50, self.max_length - prefix_tokens - reserved_tokens)
+            
+            # Truncate item content to fit available tokens
+            item_tokens = self.tokenizer.encode(item.content, add_special_tokens=False)
+            if len(item_tokens) > available_tokens:
+                # Keep the beginning and end of content for better context
+                keep_start = available_tokens * 2 // 3  # 2/3 from start
+                keep_end = available_tokens - keep_start  # 1/3 from end
+                
+                if keep_end > 0 and len(item_tokens) > keep_start + keep_end:
+                    truncated_tokens = (
+                        item_tokens[:keep_start] + 
+                        [self.tokenizer.encode("...", add_special_tokens=False)[0]] +  # ellipsis
+                        item_tokens[-keep_end:]
+                    )
+                else:
+                    truncated_tokens = item_tokens[:available_tokens]
+                
+                truncated_content = self.tokenizer.decode(truncated_tokens, skip_special_tokens=True)
+            else:
+                truncated_content = item.content
+        else:
+            # Fallback if tokenizer not available - simple character truncation
+            available_chars = max(100, (self.max_length - len(prefix)) * 4)  # rough estimate
+            if len(item.content) > available_chars:
+                keep_start = available_chars * 2 // 3
+                keep_end = available_chars - keep_start - 3  # account for "..."
+                if keep_end > 0:
+                    truncated_content = item.content[:keep_start] + "..." + item.content[-keep_end:]
+                else:
+                    truncated_content = item.content[:available_chars]
+            else:
+                truncated_content = item.content
+        
+        # Combine prefix and (possibly truncated) content
+        input_text = f"{prefix}{truncated_content}"
         
         return input_text
     

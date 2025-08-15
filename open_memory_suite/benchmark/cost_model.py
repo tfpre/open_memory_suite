@@ -1,6 +1,7 @@
 """Cost modeling system for memory operations and dispatcher decisions."""
 
 import asyncio
+import math
 import time
 from enum import Enum
 from pathlib import Path
@@ -8,6 +9,9 @@ from typing import Any, Dict, List, Optional, Union
 
 import yaml
 from pydantic import BaseModel, Field, validator
+
+from ..core.tokens import TokenCounter
+from ..core.pricebook import Pricebook, AdapterCoeffs, fit_coeffs
 
 
 class ContentSize(str, Enum):
@@ -140,32 +144,47 @@ class CostModel:
     - Thread-safe operation tracking
     """
     
-    def __init__(self, config_path: Optional[Union[str, Path]] = None):
+    def __init__(self, config_path: Optional[Union[str, Path]] = None, pricebook_path: Optional[Union[str, Path]] = None):
         """
         Initialize cost model.
         
         Args:
             config_path: Path to cost_model.yaml, defaults to package location
+            pricebook_path: Path to pricebook.json for learned coefficients
         """
         if config_path is None:
             config_path = Path(__file__).parent / "cost_model.yaml"
+        if pricebook_path is None:
+            pricebook_path = Path("./pricebook.json")
         
         self.config_path = Path(config_path)
         self._config: Dict[str, Any] = {}
         self._trackers: Dict[str, CostTracker] = {}
         self._lock = asyncio.Lock()
         
+        # New telemetry-based cost prediction
+        self._tokens = TokenCounter()
+        self._pb_path = Path(pricebook_path)
+        self._pb = Pricebook.load(self._pb_path)
+        # CRITICAL FIX: Per-key sample buffers with memory guards
+        self._samples_per_key: Dict[str, List[dict]] = {}   # key -> samples
+        self._max_samples_per_key = 10000  # Prevent memory leaks
+        self._refit_threshold_per_key = 200  # Refit when key has enough samples
+        
         self.reload_config()
     
     def reload_config(self) -> None:
         """Reload cost configuration from YAML file."""
-        with open(self.config_path, 'r') as f:
-            self._config = yaml.safe_load(f)
+        p = self.config_path
+        if not p.exists():
+            self._config = {}   # sensible empty defaults
+            return
+        with p.open("r") as f:
+            self._config = yaml.safe_load(f) or {}
     
     def _get_content_size(self, content: str) -> ContentSize:
-        """Classify content size based on token count (rough estimate)."""
-        # Rough token estimation: ~4 chars per token
-        token_count = len(content) // 4
+        """Classify content size based on accurate token count."""
+        token_count = self._tokens.count(content)
         
         if token_count < 100:
             return ContentSize.SMALL
@@ -187,6 +206,208 @@ class CostModel:
         else:
             return MemoryPressure.CRITICAL
     
+    def _coeffs(self, adapter: str, op: OperationType, model: str | None = None) -> AdapterCoeffs:
+        """Get learned coefficients for adapter/operation, with sane defaults."""
+        return self._coeffs_from_pb(self._pb, adapter, op, model)
+    
+    def _coeffs_from_pb(self, pb: Pricebook, adapter: str, op: OperationType, model: str | None = None) -> AdapterCoeffs:
+        """Get learned coefficients from a specific pricebook snapshot."""
+        key = f"{adapter}|{op.value}" + (f"|model={model}" if model else "")
+        if key not in pb.entries:
+            # Sane defaults: 0 cost for local, conservative latency
+            default_coeffs = AdapterCoeffs(
+                base_cents=0, 
+                per_token_micros=0,
+                per_k_cents=0.0, 
+                per_logN_cents=0.0,
+                p50_ms=50.0, 
+                p95_ms=120.0
+            )
+            # Add to current pricebook for future use (not the snapshot)
+            if key not in self._pb.entries:
+                self._pb.entries[key] = default_coeffs
+            return default_coeffs
+        return pb.entries[key]
+
+    def predict(
+        self, 
+        *, 
+        op: OperationType, 
+        adapter: str, 
+        tokens: int = 0, 
+        k: int = 0, 
+        item_count: int = 0, 
+        concurrency: ConcurrencyLevel = ConcurrencyLevel.SINGLE,
+        mb_stored: float = 1.0
+    ) -> tuple[int, float]:
+        """
+        Enhanced prediction using 5-component cost model from friend's recommendations.
+        
+        Args:
+            op: Operation type (STORE, RETRIEVE, SUMMARIZE)
+            adapter: Adapter name (e.g., "faiss_store")
+            tokens: Token count for content
+            k: Number of items to retrieve (for RETRIEVE ops)
+            item_count: Current number of items in adapter
+            concurrency: Concurrency level
+            mb_stored: Storage size in MB (for storage cost calculation)
+            
+        Returns:
+            (predicted_cost_cents, predicted_latency_ms)
+        """
+        # Take snapshot to avoid torn reads during concurrent refit
+        pb_snapshot = self._pb
+        c = self._coeffs_from_pb(pb_snapshot, adapter, op)
+        
+        # Enhanced cost prediction using friend's 5-component model
+        if op == OperationType.STORE:
+            # Write operation: base write cost + token scaling + amortized maintenance
+            cents_float = c.get_write_cost_cents(tokens)
+            
+        elif op == OperationType.RETRIEVE:
+            # Read operation: base read cost + retrieval complexity
+            cents_float = c.get_read_cost_cents(k, item_count)
+            
+        elif op == OperationType.MAINTAIN:
+            # Maintenance operation: index + GC costs
+            cents_float = c.get_maintenance_cost_cents(item_count)
+            
+        else:
+            # Fallback to legacy model for other operations (SUMMARIZE, ANALYZE)
+            logN = math.log(max(1, item_count), 10)
+            cents_float = (
+                c.base_cents + 
+                (c.per_token_micros * tokens) / 1_000_000 + 
+                c.per_k_cents * max(1, k) + 
+                c.per_logN_cents * logN
+            )
+        
+        # Convert to integer cents
+        cents = max(0, int(round(cents_float)))
+        
+        # Latency prediction: blend p50→p95 with concurrency scaling
+        concurrency_factor = 0.25 if concurrency in (ConcurrencyLevel.SINGLE, ConcurrencyLevel.LIGHT) else 0.8
+        ms = c.p50_ms + (c.p95_ms - c.p50_ms) * concurrency_factor
+        ms = max(0.0, ms)
+        
+        return cents, ms
+
+    async def reconcile(
+        self, 
+        *, 
+        op: OperationType, 
+        adapter: str, 
+        predicted_cents: int, 
+        predicted_ms: float, 
+        observed_cents: Optional[int], 
+        observed_ms: float,
+        tokens: int = 0,
+        k: int = 0, 
+        item_count: int = 0
+    ) -> None:
+        """
+        Record observed vs predicted performance for model improvement.
+        
+        Args:
+            op: Operation type
+            adapter: Adapter name
+            predicted_cents: What the model predicted for cost
+            predicted_ms: What the model predicted for latency
+            observed_cents: Actual cost (None for local ops)
+            observed_ms: Actual latency measured
+            tokens: Token count (for refit analysis)
+            k: Items retrieved (for refit analysis) 
+            item_count: Index size (for refit analysis)
+        """
+        async with self._lock:
+            # CRITICAL FIX: Per-key sample collection with memory guards
+            key = f"{adapter}|{op.value}"
+            
+            # Initialize key if needed
+            if key not in self._samples_per_key:
+                self._samples_per_key[key] = []
+            
+            # Add sample to key-specific buffer
+            sample = {
+                "op": op.value, 
+                "adapter": adapter,
+                "predicted_cents": predicted_cents, 
+                "predicted_ms": predicted_ms,
+                "observed_cents": observed_cents, 
+                "observed_ms": observed_ms,
+                "tokens": tokens, 
+                "k": k, 
+                "item_count": item_count
+            }
+            
+            samples_for_key = self._samples_per_key[key]
+            samples_for_key.append(sample)
+            
+            # Memory guard: keep only last N samples (reservoir sampling)
+            if len(samples_for_key) > self._max_samples_per_key:
+                # Keep recent samples (simple truncation)
+                self._samples_per_key[key] = samples_for_key[-self._max_samples_per_key:]
+            
+            # Per-key refit threshold: refit when this key has enough samples
+            if len(samples_for_key) >= self._refit_threshold_per_key:
+                await self._refit_key_locked(key)
+
+    async def _refit_key_locked(self, key: str) -> None:
+        """Refit coefficients for a specific key using copy-on-write."""
+        if key not in self._samples_per_key:
+            return
+        
+        samples = self._samples_per_key[key]
+        if len(samples) < 50:  # Need minimum signal for stable fit
+            return
+        
+        # Create new pricebook with updated coefficients (copy-on-write)
+        from ..core.pricebook import Pricebook
+        new_pb = Pricebook(
+            entries=self._pb.entries.copy(), 
+            version=self._pb.version, 
+            updated_at=time.time()
+        )
+        
+        # Refit coefficients for this key
+        new_pb.entries[key] = fit_coeffs(samples)
+        
+        # Atomically save and swap pricebook
+        new_pb.save(self._pb_path)
+        self._pb = new_pb  # Atomic reference swap
+        
+        # Clear samples for this key after successful refit
+        self._samples_per_key[key] = []
+
+    async def _refit_locked(self):
+        """Refit pricebook coefficients from all collected samples using copy-on-write."""
+        if not self._samples_per_key:
+            return
+        
+        # Create new pricebook with updated coefficients (copy-on-write)
+        from ..core.pricebook import Pricebook
+        new_pb = Pricebook(
+            entries=self._pb.entries.copy(), 
+            version=self._pb.version, 
+            updated_at=time.time()
+        )
+        
+        # Refit coefficients for all keys with sufficient data
+        keys_to_clear = []
+        for key, samples in self._samples_per_key.items():
+            if len(samples) >= 50:  # Need minimum signal
+                new_pb.entries[key] = fit_coeffs(samples)
+                keys_to_clear.append(key)
+        
+        if keys_to_clear:  # Only save if we actually updated something
+            # Atomically save and swap pricebook
+            new_pb.save(self._pb_path)
+            self._pb = new_pb  # Atomic reference swap
+            
+            # Clear samples for refitted keys
+            for key in keys_to_clear:
+                self._samples_per_key[key] = []
+    
     def estimate_storage_cost(
         self,
         adapter_name: str,
@@ -195,7 +416,7 @@ class CostModel:
         concurrency: ConcurrencyLevel = ConcurrencyLevel.SINGLE
     ) -> CostEstimate:
         """
-        Estimate cost to store content in an adapter.
+        Estimate cost to store content in an adapter using learned coefficients.
         
         Args:
             adapter_name: Target memory adapter (e.g., "faiss_store")
@@ -206,62 +427,47 @@ class CostModel:
         Returns:
             Detailed cost estimate
         """
-        # Get base costs from config
-        storage_config = self._config.get("storage", {})
-        adapter_config = storage_config.get(adapter_name, {})
+        # CRITICAL FIX: Route through predict() for single source of truth
+        tokens = self._tokens.count(content)
+        pred_cents, pred_ms = self.predict(
+            op=OperationType.STORE, 
+            adapter=adapter_name,
+            tokens=tokens, 
+            item_count=item_count, 
+            concurrency=concurrency
+        )
         
-        if not adapter_config:
-            raise ValueError(f"Unknown adapter: {adapter_name}")
+        # Convert to legacy CostEstimate format for compatibility
+        base_cost = float(pred_cents)   # keep cents
+        estimated_latency = pred_ms
         
-        # Primary storage operation cost (choose most relevant)
-        if "store_item" in adapter_config:
-            base_cost = adapter_config["store_item"]
-        elif "file_write" in adapter_config:
-            base_cost = adapter_config["file_write"]
-        elif "graph_write" in adapter_config:
-            base_cost = adapter_config["graph_write"]
-        else:
-            # Use first available cost
-            base_cost = next(iter(adapter_config.values()))
-        
-        # Apply scaling multipliers
+        # For backwards compatibility, analyze content/pressure for metadata
         content_size = self._get_content_size(content)
         memory_pressure = self._get_memory_pressure(item_count)
         
-        multipliers = self._config.get("multipliers", {})
-        content_mult = multipliers.get("content_size", {}).get(content_size.value, 1.0)
-        pressure_mult = multipliers.get("memory_pressure", {}).get(memory_pressure.value, 1.0)
-        concurrency_mult = multipliers.get("concurrency", {}).get(concurrency.value, 1.0)
-        
-        total_cost = base_cost * content_mult * pressure_mult * concurrency_mult
-        
-        # Get latency estimate
-        latency_config = self._config.get("latency_targets", {}).get("storage", {})
-        estimated_latency = latency_config.get(adapter_name, 100.0)
-        
-        # Build reasoning
         reasoning = (
-            f"Storage in {adapter_name}: base=${base_cost:.4f}, "
-            f"content_size={content_size.value}({content_mult}x), "
-            f"pressure={memory_pressure.value}({pressure_mult}x), "
-            f"concurrency={concurrency.value}({concurrency_mult}x)"
+            f"Storage in {adapter_name} via pricebook: {pred_cents} cents, "
+            f"tokens={tokens}, items={item_count}, "
+            f"concurrency={concurrency.value}"
         )
         
         return CostEstimate(
             base_cost=base_cost,
-            content_multiplier=content_mult,
-            pressure_multiplier=pressure_mult,
-            concurrency_multiplier=concurrency_mult,
-            total_cost=total_cost,
+            content_multiplier=1.0,  # Multipliers now embedded in predict()
+            pressure_multiplier=1.0,
+            concurrency_multiplier=1.0,
+            total_cost=base_cost,
             adapter_name=adapter_name,
             operation_type=OperationType.STORE,
             estimated_latency_ms=estimated_latency,
             reasoning=reasoning,
             metadata={
                 "content_length": len(content),
+                "tokens": tokens,
                 "content_size": content_size.value,
                 "memory_pressure": memory_pressure.value,
-                "item_count": item_count
+                "item_count": item_count,
+                "predicted_cents": pred_cents  # Keep raw prediction
             }
         )
     
@@ -274,7 +480,7 @@ class CostModel:
         concurrency: ConcurrencyLevel = ConcurrencyLevel.SINGLE
     ) -> CostEstimate:
         """
-        Estimate cost to retrieve from an adapter.
+        Estimate cost to retrieve from an adapter using learned coefficients.
         
         Args:
             adapter_name: Target memory adapter
@@ -286,64 +492,47 @@ class CostModel:
         Returns:
             Detailed cost estimate
         """
-        # Get base costs from config
-        retrieval_config = self._config.get("retrieval", {})
-        adapter_config = retrieval_config.get(adapter_name, {})
+        # CRITICAL FIX: Route through predict() for single source of truth
+        tokens = self._tokens.count(query)
+        pred_cents, pred_ms = self.predict(
+            op=OperationType.RETRIEVE,
+            adapter=adapter_name,
+            tokens=tokens,
+            k=k,
+            item_count=item_count,
+            concurrency=concurrency
+        )
         
-        if not adapter_config:
-            raise ValueError(f"Unknown adapter: {adapter_name}")
+        # Convert to legacy CostEstimate format for compatibility  
+        base_cost = float(pred_cents)   # cents
+        estimated_latency = pred_ms
         
-        # Primary retrieval operation cost (choose most relevant)
-        if "tfidf_search" in adapter_config:
-            base_cost = adapter_config["tfidf_search"]
-        elif "vector_search" in adapter_config:
-            base_cost = adapter_config["vector_search"]
-        elif "linear_scan" in adapter_config:
-            base_cost = adapter_config["linear_scan"]
-        elif "semantic_query" in adapter_config:
-            base_cost = adapter_config["semantic_query"]
-        else:
-            base_cost = next(iter(adapter_config.values()))
-        
-        # Apply scaling multipliers
+        # For backwards compatibility, analyze content/pressure for metadata
         content_size = self._get_content_size(query)
         memory_pressure = self._get_memory_pressure(item_count)
         
-        multipliers = self._config.get("multipliers", {})
-        content_mult = multipliers.get("content_size", {}).get(content_size.value, 1.0)
-        pressure_mult = multipliers.get("memory_pressure", {}).get(memory_pressure.value, 1.0)
-        concurrency_mult = multipliers.get("concurrency", {}).get(concurrency.value, 1.0)
-        
-        # Scale by number of items requested
-        k_multiplier = min(k / 5.0, 2.0)  # Cap at 2x for very large k
-        
-        total_cost = base_cost * content_mult * pressure_mult * concurrency_mult * k_multiplier
-        
-        # Get latency estimate
-        latency_config = self._config.get("latency_targets", {}).get("retrieval", {})
-        estimated_latency = latency_config.get(adapter_name, 50.0)
-        
         reasoning = (
-            f"Retrieval from {adapter_name}: base=${base_cost:.4f}, "
-            f"k={k}({k_multiplier:.1f}x), "
-            f"pressure={memory_pressure.value}({pressure_mult}x), "
-            f"concurrency={concurrency.value}({concurrency_mult}x)"
+            f"Retrieval from {adapter_name} via pricebook: {pred_cents} cents, "
+            f"tokens={tokens}, k={k}, items={item_count}, "
+            f"concurrency={concurrency.value}"
         )
         
         return CostEstimate(
             base_cost=base_cost,
-            content_multiplier=content_mult,
-            pressure_multiplier=pressure_mult,
-            concurrency_multiplier=concurrency_mult,
-            total_cost=total_cost,
+            content_multiplier=1.0,  # Multipliers now embedded in predict()
+            pressure_multiplier=1.0,
+            concurrency_multiplier=1.0,
+            total_cost=base_cost,
             adapter_name=adapter_name,
             operation_type=OperationType.RETRIEVE,
             estimated_latency_ms=estimated_latency,
             reasoning=reasoning,
             metadata={
                 "query_length": len(query),
+                "tokens": tokens,
                 "k": k,
-                "item_count": item_count
+                "item_count": item_count,
+                "predicted_cents": pred_cents  # Keep raw prediction
             }
         )
     
@@ -368,7 +557,7 @@ class CostModel:
         if model not in summarization_config:
             raise ValueError(f"Unknown summarization model: {model}")
         
-        base_cost = summarization_config[model]
+        base_cost = float(summarization_config[model])  # cents
         
         # Apply content size scaling
         content_size = self._get_content_size(content)
@@ -383,7 +572,7 @@ class CostModel:
         else:
             estimated_latency = 500.0   # Local inference
         
-        reasoning = f"Summarization with {model}: base=${base_cost:.4f}, size={content_size.value}({content_mult}x)"
+        reasoning = f"Summarization with {model}: base={base_cost:.4f}¢, size={content_size.value}({content_mult}x)"
         
         return CostEstimate(
             base_cost=base_cost,

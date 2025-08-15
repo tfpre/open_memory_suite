@@ -1,0 +1,1472 @@
+{
+  "metadata": {
+    "total_samples": 50,
+    "cost_spent_usd": 0.00664485,
+    "api_calls_made": 50,
+    "quality_metrics": {
+      "total_samples": 50,
+      "class_distribution": {
+        "2": 10,
+        "0": 18,
+        "1": 16,
+        "3": 6
+      },
+      "avg_confidence": 0.8272452309353736,
+      "low_confidence_count": 8,
+      "api_failures": 0,
+      "validation_failures": 0,
+      "cost_spent_usd": 0.00664485
+    },
+    "generated_at": "20250806_142817"
+  },
+  "labeled_samples": [
+    {
+      "success": true,
+      "turn_id": "turn_0",
+      "turn_data": {
+        "content": "I graduated from Stanford in 2018.",
+        "speaker": "user",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815349"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.5115810208022101,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [
+          "Stanford"
+        ],
+        "content_features": {
+          "word_count": 6,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_1",
+      "turn_data": {
+        "content": "On it",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815444"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9680639682646996,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_2",
+      "turn_data": {
+        "content": "Quantum mechanics is connected to classical physics through the correspondence principle, while also relating to information theory through quantum computing applications.",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815498"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9100953818191786,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Quantum"
+        ],
+        "content_features": {
+          "word_count": 21,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_3",
+      "turn_data": {
+        "content": "Got it",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815413"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9769156551273369,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Got"
+        ],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_4",
+      "turn_data": {
+        "content": "What's your favorite type of music for working out?",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "vector_candidate",
+          "generated_at": "2025-08-06T14:28:16.815404"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.8065852973050884,
+        "reasoning": "Question or preference, needs semantic search",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_5",
+      "turn_data": {
+        "content": "That's cool",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815378"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8829086796821555,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_6",
+      "turn_data": {
+        "content": "On it",
+        "speaker": "user",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815432"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9395876964916619,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_7",
+      "turn_data": {
+        "content": "Awesome",
+        "speaker": "user",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815373"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8716550254027109,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Awesome"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_8",
+      "turn_data": {
+        "content": "Understood",
+        "speaker": "user",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815268"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9583589647743191,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Understood"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_9",
+      "turn_data": {
+        "content": "Nice!",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815361"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9123454982095938,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_10",
+      "turn_data": {
+        "content": "What's a good Italian restaurant near downtown?",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "vector_candidate",
+          "generated_at": "2025-08-06T14:28:16.815059"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.8536250543863687,
+        "reasoning": "Question or preference, needs semantic search",
+        "detected_entities": [
+          "Italian"
+        ],
+        "content_features": {
+          "word_count": 7,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_11",
+      "turn_data": {
+        "content": "I need to find a good gym in my area.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815041"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8037769189939881,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 10,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_12",
+      "turn_data": {
+        "content": "My birthday is on March 15th.",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815368"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.783011699808357,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "March"
+        ],
+        "content_features": {
+          "word_count": 6,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_13",
+      "turn_data": {
+        "content": "We have a budget of $50,000 for this quarter.",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815439"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.7554465758738389,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_14",
+      "turn_data": {
+        "content": "I live at 7237 First St in Portland.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815126"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.6293410516613887,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [
+          "First"
+        ],
+        "content_features": {
+          "word_count": 8,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_15",
+      "turn_data": {
+        "content": "What are the main causes of climate change?",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "vector_candidate",
+          "generated_at": "2025-08-06T14:28:16.815483"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.706450254977889,
+        "reasoning": "Question or preference, needs semantic search",
+        "detected_entities": [
+          "What"
+        ],
+        "content_features": {
+          "word_count": 8,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_16",
+      "turn_data": {
+        "content": "Right",
+        "speaker": "assistant",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815489"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9711716829153785,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Right"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_17",
+      "turn_data": {
+        "content": "We have a budget of $50,000 for this quarter.",
+        "speaker": "user",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815469"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8463332062391122,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_18",
+      "turn_data": {
+        "content": "Perfect",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815171"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8003280600848908,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Perfect"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_19",
+      "turn_data": {
+        "content": "Our database connection timeout is set to 30 seconds.",
+        "speaker": "user",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815327"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8599572734098344,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Our"
+        ],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_20",
+      "turn_data": {
+        "content": "Right",
+        "speaker": "assistant",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815502"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.982623068300874,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Right"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_21",
+      "turn_data": {
+        "content": "Oh",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815515"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9868970283525313,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_22",
+      "turn_data": {
+        "content": "Quantum mechanics is connected to classical physics through the correspondence principle, while also relating to information theory through quantum computing applications.",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815529"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8620614927217558,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Quantum"
+        ],
+        "content_features": {
+          "word_count": 21,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_23",
+      "turn_data": {
+        "content": "Oh wow",
+        "speaker": "user",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815398"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8461697624497684,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_24",
+      "turn_data": {
+        "content": "What is the difference between TCP and UDP protocols?",
+        "speaker": "assistant",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815535"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9249060170238086,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "What",
+          "TCP",
+          "UDP"
+        ],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_25",
+      "turn_data": {
+        "content": "I have a golden retriever named Max.",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815341"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.628764437466329,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 7,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_26",
+      "turn_data": {
+        "content": "My dentist appointment is on Tuesday at 3 PM with Dr. Smith.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815109"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9114560646322892,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Tuesday"
+        ],
+        "content_features": {
+          "word_count": 12,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_27",
+      "turn_data": {
+        "content": "The authentication service connects to both the user database and the session store, while the API gateway routes requests to the appropriate microservices based on the JWT token claims.",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "graph_candidate",
+          "generated_at": "2025-08-06T14:28:16.815282"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.5713526875030766,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [
+          "The",
+          "API",
+          "JWT"
+        ],
+        "content_features": {
+          "word_count": 29,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_28",
+      "turn_data": {
+        "content": "Got it",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815422"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9932982311947863,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Got"
+        ],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_29",
+      "turn_data": {
+        "content": "The server runs on AWS EC2 t3.medium instances.",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815256"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.6112011183921873,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [
+          "The",
+          "AWS"
+        ],
+        "content_features": {
+          "word_count": 8,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_30",
+      "turn_data": {
+        "content": "Do you have any good book recommendations for science fiction?",
+        "speaker": "user",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815356"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.597806000461355,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 10,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_31",
+      "turn_data": {
+        "content": "Here's what happened at today's meeting: We discussed the quarterly budget allocation, reviewed three new product proposals, decided to hire two additional engineers for the mobile team, and scheduled follow-up meetings with the design team. The main concerns were timeline constraints and resource allocation, particularly around the Q4 release schedule.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815018"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.7957656393415845,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "The"
+        ],
+        "content_features": {
+          "word_count": 50,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_32",
+      "turn_data": {
+        "content": "Yesterday was such an interesting day! I started with my morning coffee at the new cafe downtown, then met up with my college roommate who's visiting from New York. We walked around the park, caught up on old times, talked about our careers and families, and ended up having lunch at that little Mediterranean place near the waterfront. The food was amazing, especially the lamb kebabs and baklava for dessert.",
+        "speaker": "assistant",
+        "context": "Conversation about casual chat",
+        "metadata": {
+          "pattern": "casual_chat",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815393"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.7598486694379829,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "Yesterday",
+          "New",
+          "Mediterranean",
+          "The"
+        ],
+        "content_features": {
+          "word_count": 70,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_33",
+      "turn_data": {
+        "content": "Will do",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815449"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9177170582269925,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Will"
+        ],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_34",
+      "turn_data": {
+        "content": "The API rate limit is 1000 requests per hour per user.",
+        "speaker": "user",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815321"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.798936242961622,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "The",
+          "API"
+        ],
+        "content_features": {
+          "word_count": 11,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_35",
+      "turn_data": {
+        "content": "The authentication service connects to both the user database and the session store, while the API gateway routes requests to the appropriate microservices based on the JWT token claims.",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "graph_candidate",
+          "generated_at": "2025-08-06T14:28:16.815314"
+        }
+      },
+      "label": {
+        "routing_class": 2,
+        "confidence": 0.5437948877826255,
+        "reasoning": "General content for semantic storage",
+        "detected_entities": [
+          "The",
+          "API",
+          "JWT"
+        ],
+        "content_features": {
+          "word_count": 29,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_36",
+      "turn_data": {
+        "content": "Our database connection timeout is set to 30 seconds.",
+        "speaker": "user",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815187"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9324688450364583,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Our"
+        ],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_37",
+      "turn_data": {
+        "content": "The project meeting includes John from Marketing and Lisa from Engineering.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815092"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9127273770687947,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "The",
+          "John",
+          "Marketing",
+          "Lisa"
+        ],
+        "content_features": {
+          "word_count": 11,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_38",
+      "turn_data": {
+        "content": "Here's what happened at today's meeting: We discussed the quarterly budget allocation, reviewed three new product proposals, decided to hire two additional engineers for the mobile team, and scheduled follow-up meetings with the design team. The main concerns were timeline constraints and resource allocation, particularly around the Q4 release schedule.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815156"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.6625909827324707,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "The"
+        ],
+        "content_features": {
+          "word_count": 50,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_39",
+      "turn_data": {
+        "content": "Yes",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.814970"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8979425292093222,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Yes"
+        ],
+        "content_features": {
+          "word_count": 1,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_40",
+      "turn_data": {
+        "content": "Here's what happened at today's meeting: We discussed the quarterly budget allocation, reviewed three new product proposals, decided to hire two additional engineers for the mobile team, and scheduled follow-up meetings with the design team. The main concerns were timeline constraints and resource allocation, particularly around the Q4 release schedule.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815077"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.8092844513589605,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "The"
+        ],
+        "content_features": {
+          "word_count": 50,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_41",
+      "turn_data": {
+        "content": "Got it",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815179"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8762866854896839,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Got"
+        ],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_42",
+      "turn_data": {
+        "content": "My dentist appointment is on Tuesday at 3 PM with Dr. Williams.",
+        "speaker": "user",
+        "context": "User is talking to their personal assistant about daily tasks and preferences.",
+        "metadata": {
+          "pattern": "personal_assistant",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815139"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8220058527186911,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Tuesday"
+        ],
+        "content_features": {
+          "word_count": 12,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_43",
+      "turn_data": {
+        "content": "Python was created by Guido van Rossum in 1991.",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "unknown",
+          "generated_at": "2025-08-06T14:28:16.815510"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.8847379019483222,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "Python",
+          "Guido",
+          "Rossum"
+        ],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_44",
+      "turn_data": {
+        "content": "Will do",
+        "speaker": "assistant",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815418"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.9970189152299495,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [
+          "Will"
+        ],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_45",
+      "turn_data": {
+        "content": "I see",
+        "speaker": "user",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "discard_candidate",
+          "generated_at": "2025-08-06T14:28:16.815477"
+        }
+      },
+      "label": {
+        "routing_class": 0,
+        "confidence": 0.8467409525989467,
+        "reasoning": "Short social interaction, likely chit-chat",
+        "detected_entities": [],
+        "content_features": {
+          "word_count": 2,
+          "has_entities": false,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_46",
+      "turn_data": {
+        "content": "The meeting is scheduled for Room 204 at 2 PM.",
+        "speaker": "user",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815455"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.9059785408498897,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "The",
+          "Room"
+        ],
+        "content_features": {
+          "word_count": 10,
+          "has_entities": true,
+          "has_relationships": false,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_47",
+      "turn_data": {
+        "content": "What is the difference between TCP and UDP protocols?",
+        "speaker": "assistant",
+        "context": "Conversation about knowledge query",
+        "metadata": {
+          "pattern": "knowledge_query",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815522"
+        }
+      },
+      "label": {
+        "routing_class": 1,
+        "confidence": 0.7953391233171386,
+        "reasoning": "Factual data suitable for structured storage",
+        "detected_entities": [
+          "What",
+          "TCP",
+          "UDP"
+        ],
+        "content_features": {
+          "word_count": 9,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": true
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_48",
+      "turn_data": {
+        "content": "The design team reports to Sarah who coordinates with the product managers and engineering leads to ensure alignment on feature requirements.",
+        "speaker": "user",
+        "context": "Conversation about task planning",
+        "metadata": {
+          "pattern": "task_planning",
+          "template_category": "graph_candidate",
+          "generated_at": "2025-08-06T14:28:16.815464"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.7104677979893899,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "The",
+          "Sarah"
+        ],
+        "content_features": {
+          "word_count": 21,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    },
+    {
+      "success": true,
+      "turn_id": "turn_49",
+      "turn_data": {
+        "content": "The microservices architecture we're implementing uses Docker containers orchestrated by Kubernetes, with each service having its own database and communication happening through REST APIs and message queues. The main benefits include better scalability, fault isolation, and independent deployment cycles, but we need to carefully manage service discovery and data consistency across boundaries.",
+        "speaker": "assistant",
+        "context": "Conversation about technical discussion",
+        "metadata": {
+          "pattern": "technical_discussion",
+          "template_category": "keyvalue_candidate",
+          "generated_at": "2025-08-06T14:28:16.815303"
+        }
+      },
+      "label": {
+        "routing_class": 3,
+        "confidence": 0.8285342187410871,
+        "reasoning": "Relationship or connection between entities",
+        "detected_entities": [
+          "The",
+          "Docker",
+          "REST",
+          "APIs",
+          "The"
+        ],
+        "content_features": {
+          "word_count": 52,
+          "has_entities": true,
+          "has_relationships": true,
+          "is_question": false
+        }
+      },
+      "api_cost_usd": 0.01
+    }
+  ]
+}

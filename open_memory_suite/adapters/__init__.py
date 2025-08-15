@@ -1,8 +1,17 @@
 """Memory adapters for different storage backends."""
 
 from .base import MemoryAdapter, MemoryItem, RetrievalResult
+from .registry import AdapterRegistry
 from .faiss_store import FAISStoreAdapter
 from .file_store import FileStoreAdapter
 from .memory_store import InMemoryAdapter
 
-__all__ = ["MemoryAdapter", "MemoryItem", "RetrievalResult", "FAISStoreAdapter", "FileStoreAdapter", "InMemoryAdapter"]
+__all__ = [
+    "MemoryAdapter", 
+    "MemoryItem", 
+    "RetrievalResult", 
+    "AdapterRegistry",
+    "FAISStoreAdapter", 
+    "FileStoreAdapter", 
+    "InMemoryAdapter"
+]

@@ -12,8 +12,15 @@ from typing import Any, Dict, List, Optional, Set
 import aiofiles
 
 from .base import MemoryAdapter, MemoryItem, RetrievalResult
+from .registry import AdapterRegistry
 
 
+@AdapterRegistry.register(capabilities={
+    AdapterRegistry.CAPABILITY_PERSISTENT,
+    AdapterRegistry.CAPABILITY_CHEAP,
+    AdapterRegistry.CAPABILITY_SEARCHABLE,
+    AdapterRegistry.CAPABILITY_SCALABLE
+})
 class FileStoreAdapter(MemoryAdapter):
     """
     Ultra-cheap file-based storage adapter.

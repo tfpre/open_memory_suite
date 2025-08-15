@@ -1,0 +1,43 @@
+{
+  "generation_time": "2025-08-05T01:56:12.502504",
+  "total_examples": 995,
+  "templates_used": [
+    "technical_deep_dive",
+    "personal_information_sharing",
+    "casual_chat",
+    "business_consultation",
+    "educational_qa",
+    "troubleshooting_session"
+  ],
+  "statistics": {
+    "total_examples": 995,
+    "action_distribution": {
+      "store": 942,
+      "drop": 53
+    },
+    "conversation_type_distribution": {
+      "technical": 172,
+      "personal": 179,
+      "business": 155,
+      "casual": 175,
+      "troubleshooting": 155,
+      "educational": 159
+    },
+    "budget_type_distribution": {
+      "premium": 327,
+      "standard": 493,
+      "minimal": 175
+    },
+    "content_length_stats": {
+      "min": 5,
+      "max": 80,
+      "mean": 33.84824120603015
+    },
+    "unique_sessions": 299
+  },
+  "export_paths": {
+    "json": "production_data/production_training_data_20250805_015611.json",
+    "csv": "production_data/production_training_data_20250805_015612.csv"
+  },
+  "quality_validated": true
+}

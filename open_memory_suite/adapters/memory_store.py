@@ -7,8 +7,14 @@ from collections import Counter, OrderedDict
 from typing import Any, Dict, List, Optional, Set
 
 from .base import MemoryAdapter, MemoryItem, RetrievalResult
+from .registry import AdapterRegistry
 
 
+@AdapterRegistry.register(capabilities={
+    AdapterRegistry.CAPABILITY_FAST,
+    AdapterRegistry.CAPABILITY_CHEAP,
+    AdapterRegistry.CAPABILITY_SEARCHABLE
+})
 class InMemoryAdapter(MemoryAdapter):
     """
     Ultra-fast in-memory storage adapter.

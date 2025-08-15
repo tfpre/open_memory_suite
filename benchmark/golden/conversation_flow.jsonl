@@ -1,0 +1,64 @@
+{"id": "C0", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C1", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C2", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C3", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C4", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C5", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C6", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C7", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C8", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C9", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C10", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C11", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C12", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C13", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C14", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C15", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C16", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C17", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C18", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C19", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C20", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C21", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C22", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C23", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C24", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C25", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C26", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C27", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C28", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C29", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C30", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C31", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C32", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C33", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C34", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C35", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C36", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C37", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C38", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C39", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C40", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C41", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C42", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C43", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C44", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C45", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C46", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C47", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C48", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C49", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C50", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C51", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C52", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C53", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C54", "stratum": "conversation_flow", "content": "Flight DL210 departs at 8:10am from SFO.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C55", "stratum": "conversation_flow", "content": "thanks", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C56", "stratum": "conversation_flow", "content": "Remind me to pay rent on the 1st.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C57", "stratum": "conversation_flow", "content": "alright", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C58", "stratum": "conversation_flow", "content": "The router serial number is SN-8842.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C59", "stratum": "conversation_flow", "content": "got it", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C60", "stratum": "conversation_flow", "content": "Book a dentist appointment for tomorrow at 2pm.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C61", "stratum": "conversation_flow", "content": "ok", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}
+{"id": "C62", "stratum": "conversation_flow", "content": "My email is user@example.com — store it.", "query": "What actionable item should I schedule?", "meta": {"actionable": "True"}}
+{"id": "C63", "stratum": "conversation_flow", "content": "cool", "query": "Is there anything to store here?", "meta": {"actionable": "False"}}

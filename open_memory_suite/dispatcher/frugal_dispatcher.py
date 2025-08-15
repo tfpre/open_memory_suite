@@ -2,12 +2,16 @@
 
 import asyncio
 import time
+from collections import defaultdict
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
+from weakref import WeakValueDictionary
 
 from ..adapters.base import MemoryAdapter, MemoryItem, RetrievalResult
 from ..benchmark.cost_model import BudgetType, CostModel, CostTracker
+from ..core.telemetry import probe
 from ..benchmark.trace import TraceEvent, TraceLogger
+from ..services.summarizer import Summarizer, SummarizerConfig
 from .core import (
     ConversationContext,
     MemoryAction,
@@ -16,6 +20,31 @@ from .core import (
     Priority,
     RoutingDecision,
 )
+
+
+class KeyedLock:
+    """Simple keyed lock implementation for per-session concurrency control."""
+    
+    def __init__(self):
+        self._locks: Dict[str, asyncio.Lock] = {}
+        self._lock = asyncio.Lock()
+    
+    async def acquire(self, key: str) -> asyncio.Lock:
+        """Get or create a lock for the given key."""
+        async with self._lock:
+            if key not in self._locks:
+                self._locks[key] = asyncio.Lock()
+            return self._locks[key]
+    
+    async def __call__(self, key: str):
+        """Async context manager for keyed locking."""
+        lock = await self.acquire(key)
+        return lock
+    
+    def cleanup_unused_locks(self):
+        """Clean up locks that are no longer referenced."""
+        # Simple cleanup - in production might want more sophisticated approach
+        pass
 
 
 class FrugalDispatcher:
@@ -72,7 +101,11 @@ class FrugalDispatcher:
         
         # Session management
         self._contexts: Dict[str, ConversationContext] = {}
-        self._context_lock = asyncio.Lock()
+        self._context_locks = KeyedLock()
+        
+        # Initialize summarization service
+        summarizer_config = SummarizerConfig()
+        self.summarizer = Summarizer(summarizer_config)
         
         # Performance monitoring
         self._stats = {
@@ -111,8 +144,8 @@ class FrugalDispatcher:
             await adapter.cleanup()
         
         # Clear contexts
-        async with self._context_lock:
-            self._contexts.clear()
+        # Note: No need to lock during cleanup since we're shutting down
+        self._contexts.clear()
     
     async def get_or_create_context(
         self,
@@ -131,7 +164,7 @@ class FrugalDispatcher:
         Returns:
             ConversationContext for the session
         """
-        async with self._context_lock:
+        async with await self._context_locks(session_id):
             if session_id not in self._contexts:
                 # Create new context
                 cost_tracker = await self.cost_model.create_tracker(session_id)
@@ -296,20 +329,107 @@ class FrugalDispatcher:
                 # Store in selected adapter
                 adapter = self.adapters.get(decision.selected_adapter)
                 if adapter:
-                    success = await adapter.store(item)
+                    # predicted (cents/ms) for telemetry
+                    pc = int(decision.estimated_cost.total_cost) if decision.estimated_cost else 0
+                    pm = float(decision.estimated_cost.estimated_latency_ms) if decision.estimated_cost else 0.0
+                    with probe("store", adapter.name, pc, pm, {"session_id": session_id, "observed_cents": None, "len": len(item.content)}):
+                        t0 = time.perf_counter()
+                        success = await adapter.store(item)
+                        observed_ms = (time.perf_counter() - t0) * 1000.0
                     if success and decision.estimated_cost:
-                        # Record actual cost
                         await self.cost_model.record_cost(session_id, decision.estimated_cost)
+                        await self.cost_model.reconcile(
+                            op=self.cost_model.OperationType.STORE if hasattr(self.cost_model, "OperationType") else None,
+                            adapter=adapter.name,
+                            predicted_cents=pc,
+                            predicted_ms=pm,
+                            observed_cents=None,
+                            observed_ms=observed_ms,
+                            tokens=0,
+                            k=0,
+                            item_count=0
+                        )
                     return success
                 else:
                     await self._log_error(f"Adapter not found: {decision.selected_adapter}")
                     return False
             
             elif decision.action == MemoryAction.SUMMARIZE:
-                # TODO: Implement summarization logic
-                # For now, just log that we would summarize
-                await self._log_info(f"Would summarize: {item.content[:100]}...")
-                return True
+                # Summarize content and store the summary
+                try:
+                    # Get conversation context for better summarization
+                    context = await self.get_or_create_context(session_id)
+                    context_str = f"Session: {session_id}, Turn: {context.turn_count}"
+                    
+                    # Perform summarization
+                    summary_result = await self.summarizer.summarize(
+                        content=item.content,
+                        context=context_str,
+                        session_id=session_id
+                    )
+                    
+                    # Create new item with summarized content
+                    summarized_item = MemoryItem(
+                        content=summary_result.summary,
+                        speaker=item.speaker,
+                        session_id=item.session_id,
+                        metadata={
+                            **item.metadata,
+                            "original_length": summary_result.original_token_count,
+                            "compressed_length": summary_result.summary_token_count,
+                            "compression_ratio": summary_result.compression_ratio,
+                            "summarization_cost_cents": summary_result.cost_cents,
+                            "is_summary": True
+                        }
+                    )
+                    
+                    # Store summarized content in appropriate adapter
+                    if decision.selected_adapter:
+                        adapter = self.adapters.get(decision.selected_adapter)
+                        if adapter:
+                            # predicted (cents/ms) for telemetry
+                            pc = int(decision.estimated_cost.total_cost) if decision.estimated_cost else 0
+                            pm = float(decision.estimated_cost.estimated_latency_ms) if decision.estimated_cost else 0.0
+                            with probe("store", adapter.name, pc, pm, {"session_id": session_id, "observed_cents": None, "len": len(summarized_item.content)}):
+                                t0 = time.perf_counter()
+                                success = await adapter.store(summarized_item)
+                                observed_ms = (time.perf_counter() - t0) * 1000.0
+                            if success:
+                                await self._log_info(
+                                    f"Summarized and stored: {len(item.content)} -> "
+                                    f"{len(summary_result.summary)} chars "
+                                    f"({summary_result.compression_ratio:.2%} compression)"
+                                )
+                                # Record costs
+                                if decision.estimated_cost:
+                                    await self.cost_model.record_cost(session_id, decision.estimated_cost)
+                                    await self.cost_model.reconcile(
+                                        op=self.cost_model.OperationType.STORE if hasattr(self.cost_model, "OperationType") else None,
+                                        adapter=adapter.name,
+                                        predicted_cents=pc,
+                                        predicted_ms=pm,
+                                        observed_cents=None,
+                                        observed_ms=observed_ms,
+                                        tokens=0,
+                                        k=0,
+                                        item_count=0
+                                    )
+                                # Update stats
+                                async with self._stats_lock:
+                                    self._stats["items_summarized"] += 1
+                                return success
+                    
+                    await self._log_info(f"Summarized but not stored: {summary_result.summary[:100]}...")
+                    return True
+                    
+                except Exception as e:
+                    await self._log_error(f"Summarization failed: {e}")
+                    # Fallback: try to store original content
+                    if decision.selected_adapter:
+                        adapter = self.adapters.get(decision.selected_adapter)
+                        if adapter:
+                            return await adapter.store(item)
+                    return False
             
             elif decision.action == MemoryAction.DROP:
                 # Nothing to do - item is dropped

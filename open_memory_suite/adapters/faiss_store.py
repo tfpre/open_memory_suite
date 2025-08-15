@@ -10,8 +10,19 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 from .base import MemoryAdapter, MemoryItem, RetrievalResult
+from .registry import AdapterRegistry
+from ..core.telemetry import probe
+from ..core.tokens import TokenCounter
+from ..benchmark.cost_model import OperationType
 
 
+@AdapterRegistry.register(capabilities={
+    AdapterRegistry.CAPABILITY_VECTOR,
+    AdapterRegistry.CAPABILITY_SEMANTIC,
+    AdapterRegistry.CAPABILITY_FAST,
+    AdapterRegistry.CAPABILITY_SCALABLE,
+    AdapterRegistry.CAPABILITY_PERSISTENT
+})
 class FAISStoreAdapter(MemoryAdapter):
     """Memory adapter using FAISS for vector similarity search."""
     
@@ -40,6 +51,10 @@ class FAISStoreAdapter(MemoryAdapter):
         self._embedding_model: Optional[SentenceTransformer] = None
         self._index: Optional[faiss.Index] = None
         self._items: List[MemoryItem] = []
+        self._token_counter = TokenCounter()
+        
+        # For cost prediction (will be set by dispatcher)
+        self.cost_model = None
     
     async def _initialize_impl(self) -> None:
         """Initialize the embedding model and FAISS index."""
@@ -110,23 +125,42 @@ class FAISStoreAdapter(MemoryAdapter):
     
     async def store(self, item: MemoryItem) -> bool:
         """Store a memory item by adding it to the FAISS index."""
-        try:
-            # Generate embedding
-            embedding = await self._embed_text(item.content)
-            
-            # Add to FAISS index
-            loop = asyncio.get_event_loop()
-            await loop.run_in_executor(
-                None,
-                lambda: self._index.add(embedding.reshape(1, -1))
+        # Calculate telemetry metadata
+        tokens = self._token_counter.count(item.content)
+        item_count = len(self._items)
+        
+        # Get cost prediction if available
+        predicted_cents, predicted_ms = 0, 0.0
+        if self.cost_model:
+            predicted_cents, predicted_ms = self.cost_model.predict(
+                op=OperationType.STORE,
+                adapter=self.name,
+                tokens=tokens,
+                item_count=item_count
             )
-            
-            # Store item metadata
-            self._items.append(item)
-            
-            return True
-        except Exception:
-            return False
+        
+        with probe("store", self.name, predicted_cents, predicted_ms, meta={
+            "tokens": tokens,
+            "item_count": item_count,
+            "observed_cents": None  # Local operation, no direct cost
+        }):
+            try:
+                # Generate embedding
+                embedding = await self._embed_text(item.content)
+                
+                # Add to FAISS index
+                loop = asyncio.get_event_loop()
+                await loop.run_in_executor(
+                    None,
+                    lambda: self._index.add(embedding.reshape(1, -1))
+                )
+                
+                # Store item metadata
+                self._items.append(item)
+                
+                return True
+            except Exception:
+                return False
     
     async def retrieve(
         self, 
@@ -135,46 +169,67 @@ class FAISStoreAdapter(MemoryAdapter):
         filters: Optional[Dict[str, Any]] = None
     ) -> RetrievalResult:
         """Retrieve relevant items using vector similarity."""
-        # Return empty result if no items in index
-        if len(self._items) == 0:
-            return RetrievalResult(query=query, items=[], similarity_scores=[])
+        # Calculate telemetry metadata
+        tokens = self._token_counter.count(query)
+        item_count = len(self._items)
         
-        # Generate query embedding
-        query_embedding = await self._embed_text(query)
+        # Get cost prediction if available
+        predicted_cents, predicted_ms = 0, 0.0
+        if self.cost_model:
+            predicted_cents, predicted_ms = self.cost_model.predict(
+                op=OperationType.RETRIEVE,
+                adapter=self.name,
+                tokens=tokens,
+                k=k,
+                item_count=item_count
+            )
         
-        # Search FAISS index
-        loop = asyncio.get_event_loop()
-        scores, indices = await loop.run_in_executor(
-            None,
-            lambda: self._index.search(query_embedding.reshape(1, -1), min(k, len(self._items)))
-        )
-        
-        # Extract results
-        retrieved_items = []
-        similarity_scores = []
-        
-        for score, idx in zip(scores[0], indices[0]):
-            if idx == -1:  # FAISS returns -1 for invalid indices
-                break
-                
-            item = self._items[idx]
+        with probe("retrieve", self.name, predicted_cents, predicted_ms, meta={
+            "tokens": tokens,
+            "k": k,
+            "item_count": item_count,
+            "observed_cents": None  # Local operation, no direct cost
+        }):
+            # Return empty result if no items in index
+            if len(self._items) == 0:
+                return RetrievalResult(query=query, items=[], similarity_scores=[])
             
-            # Apply filters if specified
-            if filters and not self._matches_filters(item, filters):
-                continue
+            # Generate query embedding
+            query_embedding = await self._embed_text(query)
+            
+            # Search FAISS index
+            loop = asyncio.get_event_loop()
+            scores, indices = await loop.run_in_executor(
+                None,
+                lambda: self._index.search(query_embedding.reshape(1, -1), min(k, len(self._items)))
+            )
+            
+            # Extract results
+            retrieved_items = []
+            similarity_scores = []
+            
+            for score, idx in zip(scores[0], indices[0]):
+                if idx == -1:  # FAISS returns -1 for invalid indices
+                    break
+                    
+                item = self._items[idx]
                 
-            retrieved_items.append(item)
-            similarity_scores.append(float(score))
-        
-        return RetrievalResult(
-            items=retrieved_items,
-            query=query,
-            similarity_scores=similarity_scores,
-            retrieval_metadata={
-                "index_size": len(self._items),
-                "embedding_model": self.embedding_model_name
-            }
-        )
+                # Apply filters if specified
+                if filters and not self._matches_filters(item, filters):
+                    continue
+                    
+                retrieved_items.append(item)
+                similarity_scores.append(float(score))
+            
+            return RetrievalResult(
+                items=retrieved_items,
+                query=query,
+                similarity_scores=similarity_scores,
+                retrieval_metadata={
+                    "index_size": len(self._items),
+                    "embedding_model": self.embedding_model_name
+                }
+            )
     
     def _matches_filters(self, item: MemoryItem, filters: Dict[str, Any]) -> bool:
         """Check if an item matches the given filters."""

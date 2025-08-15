@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Set
 
 from ..adapters.base import MemoryAdapter, MemoryItem
+from ..adapters.registry import AdapterRegistry
 from ..benchmark.cost_model import BudgetType
 from .core import (
     ContentType,
@@ -193,53 +194,83 @@ class HeuristicPolicy(MemoryPolicy):
         
         # Rule 1: Budget critical → Always choose cheapest option
         if context.is_budget_critical():
-            return self._choose_cheapest_adapter(available_adapters)
+            return self._choose_adapter_by_capability({AdapterRegistry.CAPABILITY_CHEAP}, available_adapters)
         
         # Rule 2: Critical priority → Use best adapter regardless of cost
         if priority == Priority.CRITICAL:
+            # Prefer vector + semantic for critical content
+            best_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_VECTOR, AdapterRegistry.CAPABILITY_SEMANTIC}, 
+                available_adapters
+            )
+            if best_adapter:
+                return best_adapter
             return self._choose_best_adapter(available_adapters)
         
-        # Rule 3: Recent conversation (last 10 turns) → InMemory for fast access
-        if context.turn_count <= 10 and "memory_store" in adapter_map:
-            return adapter_map["memory_store"]
+        # Rule 3: Recent conversation (last 10 turns) → Fast adapters for quick access
+        if context.turn_count <= 10:
+            fast_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_FAST}, available_adapters
+            )
+            if fast_adapter:
+                return fast_adapter
         
-        # Rule 4: Factual content → FAISS for semantic retrieval
+        # Rule 4: Factual content → Vector-capable adapters for semantic retrieval
         if (content_type == ContentType.FACTUAL or 
             self._contains_factual_info(item.content)):
-            if "faiss_store" in adapter_map:
-                return adapter_map["faiss_store"]
+            semantic_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_VECTOR, AdapterRegistry.CAPABILITY_SEMANTIC},
+                available_adapters
+            )
+            if semantic_adapter:
+                return semantic_adapter
         
-        # Rule 5: User queries → FAISS for semantic search capability
+        # Rule 5: User queries → Semantic search capability
         if (item.speaker == "user" and 
-            self._contains_question(item.content) and
-            "faiss_store" in adapter_map):
-            return adapter_map["faiss_store"]
+            self._contains_question(item.content)):
+            query_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_SEMANTIC, AdapterRegistry.CAPABILITY_SEARCHABLE},
+                available_adapters
+            )
+            if query_adapter:
+                return query_adapter
         
-        # Rule 6: Procedural content → FAISS for semantic retrieval
-        if content_type == ContentType.PROCEDURAL and "faiss_store" in adapter_map:
-            return adapter_map["faiss_store"]
+        # Rule 6: Procedural content → Vector search for semantic retrieval
+        if content_type == ContentType.PROCEDURAL:
+            procedural_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_VECTOR, AdapterRegistry.CAPABILITY_SEMANTIC},
+                available_adapters
+            )
+            if procedural_adapter:
+                return procedural_adapter
         
-        # Rule 7: Long-term archival → FileStore for cheap persistence
+        # Rule 7: Long-term archival → Persistent + cheap storage
         session_duration = context.get_session_duration_minutes()
         if (session_duration > 30 and  # Session has been going for a while
-            priority in [Priority.LOW, Priority.MEDIUM] and
-            "file_store" in adapter_map):
-            return adapter_map["file_store"]
+            priority in [Priority.LOW, Priority.MEDIUM]):
+            archival_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_PERSISTENT, AdapterRegistry.CAPABILITY_CHEAP},
+                available_adapters
+            )
+            if archival_adapter:
+                return archival_adapter
         
-        # Rule 8: Structured entities → Zep if available
-        if (self._has_structured_entities(item.content) and 
-            "zep_store" in adapter_map):
-            return adapter_map["zep_store"]
+        # Rule 8: Premium budget → Use vector-capable adapters for quality
+        if context.budget_type == BudgetType.PREMIUM:
+            premium_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_VECTOR, AdapterRegistry.CAPABILITY_SEMANTIC},
+                available_adapters
+            )
+            if premium_adapter:
+                return premium_adapter
         
-        # Rule 9: Premium budget → Use FAISS for quality
-        if (context.budget_type == BudgetType.PREMIUM and 
-            "faiss_store" in adapter_map):
-            return adapter_map["faiss_store"]
-        
-        # Rule 10: Minimal budget → Use FileStore for cost
-        if (context.budget_type == BudgetType.MINIMAL and 
-            "file_store" in adapter_map):
-            return adapter_map["file_store"]
+        # Rule 9: Minimal budget → Use cheapest available adapter
+        if context.budget_type == BudgetType.MINIMAL:
+            minimal_adapter = self._choose_adapter_by_capability(
+                {AdapterRegistry.CAPABILITY_CHEAP}, available_adapters
+            )
+            if minimal_adapter:
+                return minimal_adapter
         
         # Rule 11: Default selection based on content length and adapter availability
         word_count = len(item.content.split())
@@ -459,3 +490,24 @@ class HeuristicPolicy(MemoryPolicy):
                     return adapter
         
         return adapters[0]  # Fallback
+    
+    def _choose_adapter_by_capability(
+        self, 
+        required_capabilities: Set[str], 
+        available_adapters: List[MemoryAdapter]
+    ) -> Optional[MemoryAdapter]:
+        """
+        Choose an adapter that has all required capabilities.
+        
+        Args:
+            required_capabilities: Set of capabilities that must all be present
+            available_adapters: List of available adapters to choose from
+            
+        Returns:
+            First adapter that matches all capabilities, or None if no match
+        """
+        for adapter in available_adapters:
+            adapter_capabilities = AdapterRegistry.get_capabilities(adapter.__class__.__name__)
+            if required_capabilities.issubset(adapter_capabilities):
+                return adapter
+        return None

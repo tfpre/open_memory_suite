@@ -1,0 +1,2314 @@
+[
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_3787",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6230997802393112,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [user]: I appreciate your help | [assistant]: That's an important consideration. | Turn 12, Budget: premium | Current: [user]: Thanks for the explanation!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      12.0,
+      27.0,
+      4.0,
+      0.0,
+      0.9230769230769231,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_8667",
+    "turn_number": 12,
+    "speaker": "user",
+    "content": "Thanks for the explanation!",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6093310304125298,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.9230769230769231,
+      "content_length": 27
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_3428",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.748571173170251,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [assistant]: I understand your situation. | [user]: I'm particularly interested in aspect | Turn 3, Budget: standard | Current: [assistant]: I can help you with that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      25.0,
+      6.0,
+      1.0,
+      0.75,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "educational_qa_5469",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I can help you with that.",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.5124442328137055,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.3,
+      "content_length": 25
+    }
+  },
+  {
+    "text": "Context: [user]: When I try to action, I get error | Turn 1, Budget: standard | Current: [assistant]: That's an important consideration.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      1.0,
+      34.0,
+      4.0,
+      1.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_5495",
+    "turn_number": 1,
+    "speaker": "assistant",
+    "content": "That's an important consideration.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.7464926565336094,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.07142857142857142,
+      "content_length": 34
+    }
+  },
+  {
+    "text": "Context: [assistant]: I can help you with that. | [user]: Thanks for the explanation! | Turn 13, Budget: premium | Current: [assistant]: I understand your situation.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      13.0,
+      28.0,
+      4.0,
+      1.0,
+      0.9285714285714286,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_2474",
+    "turn_number": 13,
+    "speaker": "assistant",
+    "content": "I understand your situation.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5015879819034413,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.7647058823529411,
+      "content_length": 28
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: That's an important consideration. | Turn 4, Budget: standard | Current: [user]: I appreciate your help",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      4.0,
+      22.0,
+      4.0,
+      0.0,
+      0.8,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_9767",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "I appreciate your help",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.7271131394651962,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.3333333333333333,
+      "content_length": 22
+    }
+  },
+  {
+    "text": "Context: [assistant]: Working at StartupCo must be exciting. | [user]: That's very helpful | Turn 5, Budget: standard | Current: [assistant]: Nice to meet you! San Francisco is a great place for consultants.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      65.0,
+      12.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "personal_information_sharing_7636",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "Nice to meet you! San Francisco is a great place for consultants.",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.8280822649627944,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.7142857142857143,
+      "content_length": 65
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_2059",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6233126299485396,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [user]: That's very helpful | [assistant]: Your interests in technology, photography align well with your profession. | Turn 8, Budget: standard | Current: [user]: Thanks for the explanation!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      8.0,
+      27.0,
+      4.0,
+      0.0,
+      0.8888888888888888,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "personal_information_sharing_8442",
+    "turn_number": 8,
+    "speaker": "user",
+    "content": "Thanks for the explanation!",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.7834217198622379,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.6666666666666666,
+      "content_length": 27
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: standard | Current: [user]: The logs show log_message and I'm not sure what it means",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      0.0,
+      56.0,
+      11.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "session_id": "troubleshooting_session_8036",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "The logs show log_message and I'm not sure what it means",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.7071770987528276,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.0,
+      "content_length": 56
+    }
+  },
+  {
+    "text": "Context: [user]: I appreciate your help | [assistant]: I can help you with that. | Turn 6, Budget: premium | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      6.0,
+      19.0,
+      3.0,
+      0.0,
+      0.8571428571428571,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_1191",
+    "turn_number": 6,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5439292443669603,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.5,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: [assistant]: Let me provide some guidance on that. | [user]: That's very helpful | Turn 5, Budget: standard | Current: [assistant]: Let me provide some guidance on that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      37.0,
+      7.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "troubleshooting_session_6661",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "Let me provide some guidance on that.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.6247687775296245,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.625,
+      "content_length": 37
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: I'm particularly interested in aspect | Turn 3, Budget: premium | Current: [assistant]: I understand your situation.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      28.0,
+      4.0,
+      1.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_5490",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I understand your situation.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5513334201224747,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.17647058823529413,
+      "content_length": 28
+    }
+  },
+  {
+    "text": "Context: [user]: I appreciate your help | [assistant]: Your interests in startups, machine learning align well with your profession. | Turn 10, Budget: standard | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      10.0,
+      19.0,
+      3.0,
+      0.0,
+      0.9090909090909091,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "personal_information_sharing_4177",
+    "turn_number": 10,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.8689117070164049,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.8333333333333334,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: [user]: That's very helpful | [assistant]: I can help you with that. | Turn 8, Budget: premium | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      8.0,
+      19.0,
+      3.0,
+      0.0,
+      0.8888888888888888,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_8754",
+    "turn_number": 8,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6811327614102056,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.5333333333333333,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: I'm glad I could help. | Turn 4, Budget: minimal | Current: [user]: Alright",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      4.0,
+      7.0,
+      1.0,
+      0.0,
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_9588",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "Alright",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7324204821254929,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.6666666666666666,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [user]: That's very helpful | [assistant]: That's an important consideration. | Turn 14, Budget: premium | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      14.0,
+      19.0,
+      3.0,
+      0.0,
+      0.9333333333333333,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_5490",
+    "turn_number": 14,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6316493306958906,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.8235294117647058,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Perfect",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_8220",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Perfect",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7766102044595288,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Perfect",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_6474",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Perfect",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7143313014127545,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [assistant]: I understand your situation. | [user]: I appreciate your help | Turn 13, Budget: premium | Current: [assistant]: I can help you with that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      13.0,
+      25.0,
+      6.0,
+      1.0,
+      0.9285714285714286,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "business_consultation_1904",
+    "turn_number": 13,
+    "speaker": "assistant",
+    "content": "I can help you with that.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5690365437207908,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.7222222222222222,
+      "content_length": 25
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_5683",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6296689798204476,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Perfect",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_7159",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Perfect",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6517423093299649,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [assistant]: Your experience in education sounds fascinating. | [user]: Thanks for the explanation! | Turn 5, Budget: standard | Current: [assistant]: Your interests in machine learning, photography align well with your profession.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      80.0,
+      11.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "personal_information_sharing_7040",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "Your interests in machine learning, photography align well with your profession.",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.8101459644350295,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.7142857142857143,
+      "content_length": 80
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: premium | Current: [user]: The documentation says quote but I'm confused about aspect",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      0.0,
+      58.0,
+      9.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_7259",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "The documentation says quote but I'm confused about aspect",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.7622076377694371,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.0,
+      "content_length": 58
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: I appreciate your help | Turn 11, Budget: standard | Current: [assistant]: That's an important consideration.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      11.0,
+      34.0,
+      4.0,
+      1.0,
+      0.9166666666666666,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_8676",
+    "turn_number": 11,
+    "speaker": "assistant",
+    "content": "That's an important consideration.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.601433459408492,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.9166666666666666,
+      "content_length": 34
+    }
+  },
+  {
+    "text": "Context: [user]: When I try to action, I get error | [assistant]: I can help you with that. | Turn 2, Budget: standard | Current: [user]: Can you help me understand concept?",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      2.0,
+      35.0,
+      6.0,
+      0.0,
+      0.6666666666666666,
+      0.5,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "troubleshooting_session_1194",
+    "turn_number": 2,
+    "speaker": "user",
+    "content": "Can you help me understand concept?",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.6880554558916173,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.18181818181818182,
+      "content_length": 35
+    }
+  },
+  {
+    "text": "Context: [assistant]: Based on your researcher background, I'd suggest... | [user]: Can you help me understand concept? | Turn 3, Budget: premium | Current: [assistant]: The challenge you're facing with integration complexity is common...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      68.0,
+      9.0,
+      1.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_7297",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "The challenge you're facing with integration complexity is common...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.7257770908365334,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.21428571428571427,
+      "content_length": 68
+    }
+  },
+  {
+    "text": "Context: [assistant]: The challenge you're facing with security concerns is common... | [user]: Can you help me understand concept? | Turn 3, Budget: premium | Current: [assistant]: In the context of healthcare, the key considerations are...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      59.0,
+      9.0,
+      1.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_7433",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "In the context of healthcare, the key considerations are...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.6726542147592386,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.3,
+      "content_length": 59
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_8511",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7405646256650678,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [user]: That's very helpful | [assistant]: Your experience in healthcare sounds fascinating. | Turn 6, Budget: standard | Current: [user]: Thanks for the explanation!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      6.0,
+      27.0,
+      4.0,
+      0.0,
+      0.8571428571428571,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "personal_information_sharing_9577",
+    "turn_number": 6,
+    "speaker": "user",
+    "content": "Thanks for the explanation!",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.8204867148004228,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.75,
+      "content_length": 27
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: You're very welcome! | Turn 4, Budget: minimal | Current: [user]: Alright",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      4.0,
+      7.0,
+      1.0,
+      0.0,
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_2626",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "Alright",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7229913316164333,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.8,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [user]: That's very helpful | [assistant]: Your experience in retail sounds fascinating. | Turn 8, Budget: standard | Current: [user]: Thanks for the explanation!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      8.0,
+      27.0,
+      4.0,
+      0.0,
+      0.8888888888888888,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "personal_information_sharing_2402",
+    "turn_number": 8,
+    "speaker": "user",
+    "content": "Thanks for the explanation!",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.7109288079092306,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.8,
+      "content_length": 27
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: You're very welcome! | Turn 4, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      4.0,
+      5.0,
+      2.0,
+      0.0,
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_6512",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6940612917441169,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.8,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [user]: We're considering strategy to achieve goal | [assistant]: That's an important consideration. | Turn 2, Budget: premium | Current: [user]: I'm particularly interested in aspect",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      2.0,
+      37.0,
+      5.0,
+      0.0,
+      0.6666666666666666,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "session_id": "business_consultation_3591",
+    "turn_number": 2,
+    "speaker": "user",
+    "content": "I'm particularly interested in aspect",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.679037659852294,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.16666666666666666,
+      "content_length": 37
+    }
+  },
+  {
+    "text": "Context: [assistant]: The challenge you're facing with integration complexity is common... | [user]: I appreciate your help | Turn 13, Budget: premium | Current: [assistant]: The challenge you're facing with integration complexity is common...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      13.0,
+      68.0,
+      9.0,
+      1.0,
+      0.9285714285714286,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_7297",
+    "turn_number": 13,
+    "speaker": "assistant",
+    "content": "The challenge you're facing with integration complexity is common...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.6743993279172817,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.9285714285714286,
+      "content_length": 68
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_8287",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.709009899221069,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [user]: I see | Turn 1, Budget: minimal | Current: [assistant]: Feel free to ask if you have more questions.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      1.0,
+      44.0,
+      9.0,
+      1.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "casual_chat_8287",
+    "turn_number": 1,
+    "speaker": "assistant",
+    "content": "Feel free to ask if you have more questions.",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.1557146548485159,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.2,
+      "content_length": 44
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: Feel free to ask if you have more questions. | Turn 4, Budget: minimal | Current: [user]: Perfect",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      4.0,
+      7.0,
+      1.0,
+      0.0,
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_1945",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "Perfect",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6421536237129637,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.6666666666666666,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [user]: I appreciate your help | [assistant]: I understand your situation. | Turn 12, Budget: premium | Current: [user]: Thanks for the explanation!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      12.0,
+      27.0,
+      4.0,
+      0.0,
+      0.9230769230769231,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "business_consultation_3370",
+    "turn_number": 12,
+    "speaker": "user",
+    "content": "Thanks for the explanation!",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6646096807284624,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.7058823529411765,
+      "content_length": 27
+    }
+  },
+  {
+    "text": "Context: [assistant]: I can help you with that. | [user]: I'm particularly interested in aspect | Turn 3, Budget: standard | Current: [assistant]: I understand your situation.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      28.0,
+      4.0,
+      1.0,
+      0.75,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "educational_qa_9251",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I understand your situation.",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.6065469866163637,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.3,
+      "content_length": 28
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: I appreciate your help | Turn 9, Budget: premium | Current: [assistant]: I can help you with that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      9.0,
+      25.0,
+      6.0,
+      1.0,
+      0.9,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "business_consultation_6395",
+    "turn_number": 9,
+    "speaker": "assistant",
+    "content": "I can help you with that.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5272657675272628,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.5625,
+      "content_length": 25
+    }
+  },
+  {
+    "text": "Context: [assistant]: I can help you with that. | [user]: What would you recommend for situation? | Turn 3, Budget: standard | Current: [assistant]: I can help you with that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      25.0,
+      6.0,
+      1.0,
+      0.75,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "troubleshooting_session_6233",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I can help you with that.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.600171062180225,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.21428571428571427,
+      "content_length": 25
+    }
+  },
+  {
+    "text": "Context: [assistant]: Based on your researcher background, I'd suggest... | [user]: Thanks for the explanation! | Turn 7, Budget: premium | Current: [assistant]: In the context of entertainment, the key considerations are...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      7.0,
+      62.0,
+      9.0,
+      1.0,
+      0.875,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_2378",
+    "turn_number": 7,
+    "speaker": "assistant",
+    "content": "In the context of entertainment, the key considerations are...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.7135321971414296,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.4666666666666667,
+      "content_length": 62
+    }
+  },
+  {
+    "text": "Context: [assistant]: I understand your situation. | [user]: Thanks for the explanation! | Turn 5, Budget: standard | Current: [assistant]: I understand your situation.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      28.0,
+      4.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "educational_qa_9022",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "I understand your situation.",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.5915057082750329,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.8333333333333334,
+      "content_length": 28
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: premium | Current: [user]: The market analysis indicates trend in sector",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      0.0,
+      45.0,
+      7.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "business_consultation_1413",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "The market analysis indicates trend in sector",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.5311289757999917,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.0,
+      "content_length": 45
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: That's very helpful | Turn 5, Budget: standard | Current: [assistant]: Let me provide some guidance on that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      37.0,
+      7.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "educational_qa_7297",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "Let me provide some guidance on that.",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.6263178891267959,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.625,
+      "content_length": 37
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's a great question about blockchain. Let me explain... | [user]: Thanks for the explanation! | Turn 5, Budget: premium | Current: [assistant]: The challenge you're facing with data quality is common...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      58.0,
+      9.0,
+      1.0,
+      0.8333333333333334,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_5029",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "The challenge you're facing with data quality is common...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.656029770225667,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.3333333333333333,
+      "content_length": 58
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Alright",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_9588",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Alright",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7415722642664062,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [assistant]: Let me provide some guidance on that. | [user]: That's very helpful | Turn 7, Budget: standard | Current: [assistant]: That's an important consideration.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      7.0,
+      34.0,
+      4.0,
+      1.0,
+      0.875,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_5495",
+    "turn_number": 7,
+    "speaker": "assistant",
+    "content": "That's an important consideration.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.6458982200971976,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.5,
+      "content_length": 34
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: Can you help me understand concept? | Turn 3, Budget: premium | Current: [assistant]: I can help you with that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      25.0,
+      6.0,
+      1.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "business_consultation_1413",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I can help you with that.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6765232115679751,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.3,
+      "content_length": 25
+    }
+  },
+  {
+    "text": "Context: [assistant]: I'm doing well, thank you for asking! | [user]: I'm particularly interested in aspect | Turn 3, Budget: minimal | Current: [assistant]: You're very welcome!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      20.0,
+      3.0,
+      1.0,
+      0.75,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_8278",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "You're very welcome!",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.07819102875615298,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.6,
+      "content_length": 20
+    }
+  },
+  {
+    "text": "Context: [user]: I'm particularly interested in aspect | [assistant]: I can help you with that. | Turn 4, Budget: standard | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      4.0,
+      19.0,
+      3.0,
+      0.0,
+      0.8,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_5495",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.6703612981265552,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.2857142857142857,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      5.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_7432",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7936127058432018,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: [assistant]: Let me provide some guidance on that. | [user]: Can you help me understand concept? | Turn 3, Budget: standard | Current: [assistant]: I understand your situation.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      28.0,
+      4.0,
+      1.0,
+      0.75,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "educational_qa_7682",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "I understand your situation.",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.6475683394086191,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.375,
+      "content_length": 28
+    }
+  },
+  {
+    "text": "Context: [assistant]: Your interests in machine learning, reading align well with your profession. | [user]: Thanks for the explanation! | Turn 5, Budget: standard | Current: [assistant]: Working at StartupCo must be exciting.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      38.0,
+      6.0,
+      1.0,
+      0.8333333333333334,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "personal_information_sharing_1251",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "Working at StartupCo must be exciting.",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.7470507236490713,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.5555555555555556,
+      "content_length": 38
+    }
+  },
+  {
+    "text": "Context: [user]: What would you recommend for situation? | [assistant]: I'm doing well, thank you for asking! | Turn 4, Budget: minimal | Current: [user]: I see",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      4.0,
+      5.0,
+      2.0,
+      0.0,
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_3428",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "I see",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.6010419462500864,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.5714285714285714,
+      "content_length": 5
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: standard | Current: [user]: I'm having an issue with system where problem",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      0.0,
+      45.0,
+      8.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "session_id": "troubleshooting_session_5106",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "I'm having an issue with system where problem",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.6981008804222399,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.0,
+      "content_length": 45
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: I'm particularly interested in aspect | Turn 3, Budget: premium | Current: [assistant]: Let me provide some guidance on that.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      37.0,
+      7.0,
+      1.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "business_consultation_8207",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "Let me provide some guidance on that.",
+    "conversation_type": "business",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "business"
+    },
+    "expected_action": "store",
+    "confidence": 0.6149884787952552,
+    "metadata": {
+      "template": "business_consultation",
+      "turn_ratio": 0.1875,
+      "content_length": 37
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Alright",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_2530",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Alright",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7567746378641863,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [user]: I'm currently working on project at company | Turn 1, Budget: standard | Current: [assistant]: Your experience in manufacturing sounds fascinating.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      1.0,
+      52.0,
+      6.0,
+      1.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "personal_information_sharing_4934",
+    "turn_number": 1,
+    "speaker": "assistant",
+    "content": "Your experience in manufacturing sounds fascinating.",
+    "conversation_type": "personal",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.8673255888853717,
+    "metadata": {
+      "template": "personal_information_sharing",
+      "turn_ratio": 0.1,
+      "content_length": 52
+    }
+  },
+  {
+    "text": "Context: [assistant]: In the context of entertainment, the key considerations are... | [user]: I appreciate your help | Turn 5, Budget: premium | Current: [assistant]: In the context of entertainment, the key considerations are...",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      5.0,
+      62.0,
+      9.0,
+      1.0,
+      0.8333333333333334,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "session_id": "technical_deep_dive_7746",
+    "turn_number": 5,
+    "speaker": "assistant",
+    "content": "In the context of entertainment, the key considerations are...",
+    "conversation_type": "technical",
+    "budget_type": "premium",
+    "user_profile": {
+      "expertise": "high",
+      "domain": "engineering"
+    },
+    "expected_action": "store",
+    "confidence": 0.6627591393422969,
+    "metadata": {
+      "template": "technical_deep_dive",
+      "turn_ratio": 0.5,
+      "content_length": 62
+    }
+  },
+  {
+    "text": "Context: [user]: Perfect | Turn 1, Budget: minimal | Current: [assistant]: I'm doing well, thank you for asking!",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      1.0,
+      37.0,
+      7.0,
+      1.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "session_id": "casual_chat_7159",
+    "turn_number": 1,
+    "speaker": "assistant",
+    "content": "I'm doing well, thank you for asking!",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "store",
+    "confidence": 0.14495381900508525,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.16666666666666666,
+      "content_length": 37
+    }
+  },
+  {
+    "text": "Context: [user]: Can you help me understand concept? | [assistant]: I can help you with that. | Turn 4, Budget: standard | Current: [user]: I appreciate your help",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      4.0,
+      22.0,
+      4.0,
+      0.0,
+      0.8,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_3772",
+    "turn_number": 4,
+    "speaker": "user",
+    "content": "I appreciate your help",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.7710622114669072,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.2857142857142857,
+      "content_length": 22
+    }
+  },
+  {
+    "text": "Context: [user]: Thanks for the explanation! | [assistant]: Let me provide some guidance on that. | Turn 6, Budget: standard | Current: [user]: I appreciate your help",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      6.0,
+      22.0,
+      4.0,
+      0.0,
+      0.8571428571428571,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "educational_qa_9960",
+    "turn_number": 6,
+    "speaker": "user",
+    "content": "I appreciate your help",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.5570990631011369,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.8571428571428571,
+      "content_length": 22
+    }
+  },
+  {
+    "text": "Context: [user]: I appreciate your help | [assistant]: I understand your situation. | Turn 8, Budget: standard | Current: [user]: That's very helpful",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      8.0,
+      19.0,
+      3.0,
+      0.0,
+      0.8888888888888888,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "educational_qa_5408",
+    "turn_number": 8,
+    "speaker": "user",
+    "content": "That's very helpful",
+    "conversation_type": "educational",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "learning"
+    },
+    "expected_action": "store",
+    "confidence": 0.5025599466159292,
+    "metadata": {
+      "template": "educational_qa",
+      "turn_ratio": 0.8888888888888888,
+      "content_length": 19
+    }
+  },
+  {
+    "text": "Context: Start of conversation | Turn 0, Budget: minimal | Current: [user]: Perfect",
+    "label": 2,
+    "action": "drop",
+    "context_features": [
+      0.0,
+      7.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "casual_chat_7360",
+    "turn_number": 0,
+    "speaker": "user",
+    "content": "Perfect",
+    "conversation_type": "casual",
+    "budget_type": "minimal",
+    "user_profile": {
+      "expertise": "low",
+      "domain": "general"
+    },
+    "expected_action": "drop",
+    "confidence": 0.7245838245925529,
+    "metadata": {
+      "template": "casual_chat",
+      "turn_ratio": 0.0,
+      "content_length": 7
+    }
+  },
+  {
+    "text": "Context: [assistant]: That's an important consideration. | [user]: I'm particularly interested in aspect | Turn 3, Budget: standard | Current: [assistant]: That's an important consideration.",
+    "label": 0,
+    "action": "store",
+    "context_features": [
+      3.0,
+      34.0,
+      4.0,
+      1.0,
+      0.75,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "session_id": "troubleshooting_session_6573",
+    "turn_number": 3,
+    "speaker": "assistant",
+    "content": "That's an important consideration.",
+    "conversation_type": "troubleshooting",
+    "budget_type": "standard",
+    "user_profile": {
+      "expertise": "medium",
+      "domain": "technical"
+    },
+    "expected_action": "store",
+    "confidence": 0.7261478504314743,
+    "metadata": {
+      "template": "troubleshooting_session",
+      "turn_ratio": 0.3,
+      "content_length": 34
+    }
+  }
+]

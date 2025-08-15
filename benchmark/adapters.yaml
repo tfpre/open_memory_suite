@@ -1,0 +1,70 @@
+# Adapter configuration for Open Memory Suite Benchmark
+# This file defines available memory adapters and their settings
+
+adapters:
+  memory:
+    name: "memory_store"
+    type: "InMemoryAdapter"
+    description: "Fast in-memory storage for development and testing"
+    enabled: true
+
+  file:
+    name: "file_store" 
+    type: "FileStoreAdapter"
+    path: "./benchmark_storage"
+    description: "Persistent file-based storage"
+    enabled: true
+
+  faiss:
+    name: "faiss_store"
+    type: "FAISStoreAdapter"
+    description: "FAISS vector similarity search"
+    enabled: true
+    model: "sentence-transformers/all-MiniLM-L6-v2"
+    index_config:
+      dimension: 384
+      index_type: "IndexFlatL2"
+
+# Dataset configurations
+datasets:
+  sample:
+    path: "benchmark/datasets/sample_conversations.json"
+    description: "Built-in sample conversations"
+    type: "json"
+
+  persona_chat:
+    path: "data/raw/persona_chat/Synthetic-Persona-Chat_test.csv"
+    description: "PersonaChat synthetic conversations"
+    type: "csv"
+
+# Evaluation settings
+evaluation:
+  k_retrieve: 5
+  budget_types: 
+    - "frugal"
+    - "standard" 
+    - "premium"
+  metrics:
+    - "recall_rate"
+    - "precision_rate"
+    - "storage_cost"
+    - "retrieval_latency"
+    - "storage_efficiency"
+  
+  # Cost model settings
+  cost_model:
+    openai_pricing:
+      input_token_cost: 0.0000025  # $2.50 per 1M tokens
+      output_token_cost: 0.000010  # $10.00 per 1M tokens
+    
+    storage_pricing:
+      base_cost: 0.00001  # Base cost per item
+      size_multiplier: 0.000001  # Cost per character
+
+# Output settings
+output:
+  results_dir: "benchmark_results/"
+  trace_dir: "benchmark_traces/"
+  format: "json"
+  include_traces: true
+  generate_plots: false

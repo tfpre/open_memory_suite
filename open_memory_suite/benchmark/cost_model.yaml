@@ -1,6 +1,6 @@
 # Open Memory Suite - Cost Model Configuration
 # All costs in USD cents (0.0001 = $0.0001)
-# Updated: August 1, 2025
+# Updated: August 6, 2025 - Current market pricing
 
 # Storage Operations - Cost to store a single memory item
 storage:
@@ -56,12 +56,14 @@ retrieval:
 
 # Content Processing - Advanced operations
 processing:
-  # Summarization costs
+  # Summarization costs (current 2025 pricing)
   summarization:
-    gpt_35_turbo: 0.002         # OpenAI API call (~1000 tokens)
-    gpt_4o_mini: 0.001          # Cheaper but still high quality
+    gpt_4o_mini: 0.08           # $0.15 input + $0.60 output per 1M tokens (~1000 tokens)
+    gpt_4o: 0.25                # $2.50 input + $10.00 output per 1M tokens
+    claude_3_haiku: 0.04        # $0.25 input + $1.25 output per 1M tokens
+    claude_3_sonnet: 0.18       # $3.00 input + $15.00 output per 1M tokens
     local_llama_7b: 0.0001      # Local inference (amortized GPU cost)
-    local_llama_3b: 0.00005     # Smaller, faster model
+    local_llama_13b: 0.0002     # Larger model, more compute
     
   # Content analysis 
   analysis:
@@ -152,5 +154,46 @@ quality_thresholds:
     batch_max: 5000           # 5s for background processing
     
   cost_efficiency:
-    target_reduction: 0.40     # 40% cost reduction vs baseline
-    minimum_reduction: 0.20    # 20% minimum to be worthwhile
+    target_reduction: 0.70     # 70% cost reduction vs baseline (our ambitious target)
+    minimum_reduction: 0.40    # 40% minimum to be worthwhile
+    
+# Real-World Cost Baselines (cents per 50-turn conversation)
+# Used for demonstrating cost savings and ROI calculations  
+cost_baselines:
+  naive_store_everything:
+    storage_cost: 12.0         # Store every turn in expensive vector DB
+    retrieval_cost: 8.0        # Linear scan all stored items
+    total_per_conversation: 20.0
+    description: "Naive approach - no intelligence"
+    
+  basic_rag_system:
+    storage_cost: 8.0          # Simple vector storage
+    retrieval_cost: 4.0        # Basic vector similarity 
+    total_per_conversation: 12.0
+    improvement_vs_naive: 0.40  # 40% better than naive
+    description: "Standard RAG with FAISS"
+    
+  intelligent_routing:
+    storage_cost: 3.5          # Smart routing decisions
+    retrieval_cost: 2.0        # Optimized multi-adapter retrieval
+    total_per_conversation: 5.5
+    improvement_vs_naive: 0.725 # 72.5% better than naive
+    improvement_vs_basic: 0.54  # 54% better than basic RAG
+    description: "Our target performance"
+    
+# XGBoost Training Cost Estimates
+ml_training_costs:
+  data_generation:
+    synthetic_conversations: 15.0    # GPT-4 auto-labeling 14k examples
+    real_world_labeling: 8.0        # Human validation on 2k examples  
+    active_learning: 5.0            # Single round uncertainty sampling
+    total_data_cost: 28.0           # One-time cost
+    
+  model_training:
+    xgboost_training: 0.05          # Local compute cost
+    distilbert_lora: 2.0            # GPU hours for fine-tuning
+    evaluation_runs: 1.0            # Cross-validation and testing
+    total_training_cost: 3.05       # One-time cost
+    
+  total_ml_investment: 31.05        # Total one-time cost
+  break_even_conversations: 50     # Pays for itself after ~50 conversations

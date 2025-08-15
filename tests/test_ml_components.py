@@ -11,10 +11,10 @@ import torch
 
 from open_memory_suite.adapters import MemoryItem, InMemoryAdapter
 from open_memory_suite.benchmark import CostModel, BenchmarkHarness
+from open_memory_suite.benchmark.cost_model import BudgetType
 from open_memory_suite.dispatcher import (
     ConversationContext,
     MemoryAction,
-    BudgetType,
     HeuristicPolicy,
     ML_AVAILABLE,
 )

@@ -28,7 +28,12 @@ aiohttp             = "^3.9.5"
 tqdm                = "^4.66.4"
 aiofiles            = "^23.2.0"
 rich                = "^13.7.0"         # Beautiful CLI output
+click               = "^8.1.7"          # CLI framework
+tiktoken            = "^0.8.0"          # Tokenizer for cost estimation
 scikit-learn        = "^1.5.0"         # ML utilities for training
+fastapi             = "^0.115.0"       # REST API server
+uvicorn             = "^0.32.0"         # ASGI server for FastAPI
+xgboost             = "^2.1.0"          # XGBoost for ML routing classifier
 
 [tool.poetry.group.dev.dependencies]
 pytest         = "^8.2.0"
@@ -44,6 +49,7 @@ pytest-cov     = "^5.0.0"
 zep-python = "^2.0.0"
 neo4j      = "^5.20.0"
 vllm = {version = "^0.10.0", optional = true, python = "<3.13"}
+spacy = {version = "^3.7.0", optional = true, python = ">=3.9,<3.13"}
 
 [build-system]
 requires      = ["poetry-core>=1.9.0"]

@@ -1,0 +1,9 @@
+{
+  "seed": 1337,
+  "files": {
+    "benchmark/golden/factual_lookup.jsonl": "332bd358ce55d95e187467ad4dfaad8cdba05ea0490b94676c18753522659968",
+    "benchmark/golden/semantic_search.jsonl": "55d6225ca09cf08becfaf82f8b2f1c5e1f506880372abf899183dd45392fc57b",
+    "benchmark/golden/relationship_memory.jsonl": "fff981627ded646e18b6e574597b7c37f3b5f01815000819249fcfe19d55d336",
+    "benchmark/golden/conversation_flow.jsonl": "04d3d333f18aac19ecadf4ae5f8382390e6ac4a39aa1afe1039c1ae2dcb2cce9"
+  }
+}
